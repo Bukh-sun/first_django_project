@@ -1,0 +1,117 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+/* Шапка */
+.header {
+    background: linear-gradient(135deg, #b0bae5 0%, #cfb2e8 100%);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: white;
+    font-size: 2.5em;
+}
+
+.header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+/* Посты */
+.post {
+    background: white;
+    border: 1px solid #e1e1e1;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post h2 a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.post h2 a:hover {
+    color: #667eea;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Ссылки */
+a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Футер */
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid #e1e1e1;
+    padding-top: 20px;
+}
+
+/* Навигация (добавим позже) */
+.navigation {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navigation a {
+    margin-right: 15px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
+    .header h1 a {
+        font-size: 2em;
+    }
+
+    .post {
+        padding: 15px;
+    }
+}

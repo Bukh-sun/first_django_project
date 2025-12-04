@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'blog/base.html' %}
+{% block title %}
+    Category's posts
+{% endblock %}
+
+{% block content %}
+    <h2> {{ category.name }} </h2>>
+    {% for post in posts %}
+        <div class="post">
+        <h2><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.title }} </a></h2>
+        <div class="post-meta">
+        Published: {{ post.published_date }} | Category: {{ post.category.name }}
+        </div>
+        <p> {{ post.content|truncatewords:30 }}</p>
+        <a href="{% url 'post_detail' pk=post.pk %}"> Read more </a>
+        </div>
+    {% empty %}
+        <p>No published posts yet.</p>
+    {% endfor %}
+
+    <a href="{%  url 'post_list' %}">Return to the list of posts</a>
+{% endblock %}
