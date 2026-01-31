@@ -6,7 +6,7 @@ from django.utils import timezone
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(published_date__isnull=False)
+        return super().get_queryset().filter(published_date__isnull=False, published_date__lte=timezone.now()) #only published posts
 
 
 class Category(models.Model):

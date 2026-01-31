@@ -1,14 +1,68 @@
 {% extends 'blog/base.html' %}
 {% block title %}
-    The post's detail
+    The post's detail {{ post.title }}
 {% endblock %}
 
 {% block content %}
-    <h2> {{ post.title }} </h2>
+    <article class="post-detail">
+    <h1> {{ post.title }} </h1>
         <div class="post-meta">
-        Published: {{ post.published_date }} | Category: {{ post.category.name }} | Views: {{ post.views_count }}
+        Published: {{ post.author.username }} | {{ post.published_date }} | Category: {{ post.category.name }} | Views: {{ post.views_count }}
         </div>
+
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+
         <p> {{ post.content }}</p>
 
-    <a href="{%  url 'post_list' %}">Return to the list of posts</a>
+            <div class="post-navigation">
+            {% if previous_post %}
+                <a href="{% url 'post_detail' pk=previous_post.pk %}" class="btn prev-post">
+                    ← {{ previous_post.title|truncatechars:30 }}
+                </a>
+            {% endif %}
+
+            {% if next_post %}
+                <a href="{% url 'post_detail' pk=next_post.pk %}" class="btn next-post">
+                    {{ next_post.title|truncatechars:30 }} →
+                </a>
+            {% endif %}
+        </div>
+    </article>
+
+    <a href="{%  url 'post_list' %}">Return to the list of posts</a> <!-- to the post list link -->
+
+    <section class="comments-section">
+    <h2>Comments {{ comments.count }}</h2>
+
+    {% if user.is_authenticated %}
+    <form method="post" class="comment-form">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit" class="btn">Send a comment </button>
+    </form>
+    {% else %}
+       <p class="auth-notice">
+                <a href="{% url 'admin:login' %}?next={{ request.path }}">Login</a>, to leave a comment
+       </p>
+
+        {% endif %}
+
+    <div class="comments-list">
+    {% for comment in comments %}
+       <div class="comment">
+            <div class="comment-header">
+                <strong>{{ comments.author.username }}</strong>
+                <small> {{ comment.created_date|date:"d.m.Y H:i"  }}</small>
+            </div>
+            <p>{{ comment.content }}</p>
+       </div>
+    {% empty %}
+                <p class="no-comments">No comments yet. Leave your comment!</p>
+            {% endfor %}
+    </div>
+
+    </section>
+
 {% endblock %}
