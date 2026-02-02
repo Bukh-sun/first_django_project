@@ -1,3 +1,4 @@
+# Django
 *.pyc
 *__pycache__/
 *.pyo
@@ -7,10 +8,27 @@ env/
 venv/
 .venv/
 .env
+
+# Database
 *.sqlite3
 *.db
+
+# IDE
+.vscode/
 .idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
 Thumbs.db
-/staticfiles/
 
+# Static files
+/staticfiles/
+/media/
+
+# Logs
+*.log
+
+# Django secret key
+secret_key.txt
